@@ -121,6 +121,4 @@ Project
 
 Project validation accepts only `localhost` base URLs. Test execution checks the host again immediately before sending requests. All checks use bounded, predefined requests and store network failures as `ERROR`.
 
-## License
 
-This project is provided for learning and authorized defensive testing.
