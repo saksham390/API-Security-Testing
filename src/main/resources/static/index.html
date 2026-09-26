@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel API | Security Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand"><span class="brand-mark">S</span><span>Sentinel API</span></div>
+            <p class="eyebrow">DEFENSIVE SECURITY</p>
+            <nav>
+                <a class="nav-link active" href="#overview"><span>◈</span> Overview</a>
+                <a class="nav-link" href="#projects"><span>▦</span> Projects</a>
+                <a class="nav-link" href="#endpoints"><span>⌁</span> Endpoints</a>
+                <a class="nav-link" href="#runs"><span>◷</span> Test runs</a>
+            </nav>
+            <div class="sidebar-note"><span class="status-dot"></span><div><strong>Local mode</strong><small>Only registered APIs</small></div></div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar"><div><p class="eyebrow">SECURITY OPERATIONS / V1</p><h1>API security, made visible.</h1></div><button class="profile-button" aria-label="Open profile">AD</button></header>
+
+            <section class="hero-panel" id="overview">
+                <div><p class="eyebrow accent">YOUR TESTING WORKSPACE</p><h2>Find weak spots before they become incidents.</h2><p class="hero-copy">Register a local API, run safe deterministic checks, and turn every response into a clear action.</p><button class="primary-button" onclick="openProjectDialog()">+ Register a project</button></div>
+                <div class="hero-orbit"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core"><span>API</span><strong>SAFE</strong></div></div>
+            </section>
+
+            <section class="section-heading"><div><p class="eyebrow">WORKSPACE SNAPSHOT</p><h2>At a glance</h2></div><span class="date-label">27 SEP 2026</span></section>
+            <section class="metrics-grid"><article class="metric-card"><span class="metric-icon blue">⌂</span><p>Registered projects</p><strong id="project-count">0</strong><small>Local APIs only</small></article><article class="metric-card"><span class="metric-icon green">✓</span><p>Checks completed</p><strong>0</strong><small>No test runs yet</small></article><article class="metric-card"><span class="metric-icon amber">!</span><p>Open findings</p><strong>0</strong><small>All clear for now</small></article></section>
+
+            <section class="activity-section" id="projects"><div class="section-heading"><div><p class="eyebrow">REGISTERED APIS</p><h2>Projects</h2></div><button class="quiet-button" onclick="openProjectDialog()">Add project <span>+</span></button></div><div id="project-list" class="project-list"><div class="empty-state"><div class="empty-icon">⌁</div><h3>No projects registered yet</h3><p>Register a localhost API to begin building your testing inventory.</p><button class="secondary-button" onclick="openProjectDialog()">Set up first project</button></div></div></section>
+            <section class="activity-section" id="endpoints"><div class="section-heading"><div><p class="eyebrow">TEST INVENTORY</p><h2>Register an endpoint</h2></div></div><form id="endpoint-form" class="endpoint-form"><label>Project<select name="projectId" id="endpoint-project" required></select></label><label>Method<select name="method"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select></label><label>Path<input name="path" required pattern="/.*" placeholder="/api/users/{id}"></label><label>Authentication<select name="authenticationType"><option>NONE</option><option>BEARER</option><option>BASIC</option><option>API_KEY</option></select></label><button class="primary-button" type="submit">Save endpoint</button></form><p id="endpoint-message" class="form-hint"></p></section>
+            <section class="activity-section" id="results"><div class="section-heading"><div><p class="eyebrow">LATEST EVIDENCE</p><h2>Test results</h2></div></div><div id="result-list" class="result-list"><div class="empty-state"><h3>No results yet</h3><p>Register an endpoint, then run checks from its project row.</p></div></div></section>
+            <footer>Version 1 <span>•</span> Local APIs only <span>•</span> Built with Spring Boot</footer>
+        </main>
+    </div>
+    <dialog id="project-dialog" class="project-dialog"><form id="project-form"><div class="dialog-heading"><div><p class="eyebrow accent">NEW INVENTORY ITEM</p><h2>Register a project</h2></div><button type="button" class="close-button" onclick="closeProjectDialog()" aria-label="Close">×</button></div><label>Name<input name="name" required maxlength="100" placeholder="Demo E-Commerce API"></label><label>Description<textarea name="description" maxlength="500" placeholder="Local API for security testing"></textarea></label><label>Base URL<input name="baseUrl" type="url" required placeholder="http://localhost:8081"></label><p class="form-hint">Only localhost URLs are accepted.</p><div class="dialog-actions"><button type="button" class="quiet-button" onclick="closeProjectDialog()">Cancel</button><button class="primary-button" type="submit">Save project</button></div><p id="form-error" class="form-error" role="alert"></p></form></dialog><div class="toast" id="toast" role="status"></div>
+    <script src="/app.js"></script>
+</body>
+</html>
